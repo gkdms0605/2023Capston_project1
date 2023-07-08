@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title style="font-size: 15px;">경북소프트웨어고등학교 도서 관리 시스템</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR&display=swap" rel="stylesheet">
+  <link href="https://www.flaticon.com/kr/icons" rel="preconnect">
+  <script src="https://kit.fontawesome.com/bc2ed4dd83.js" crossorigin="anonymous"></script>
+</head>
+<style>
+  * {
+    padding: 0;
+    margin: 0;
+    font-family: 'IBM Plex Sans KR', sans-serif;
+  }
+
+  a:link {
+    color: black;
+  }
+
+  a:visited {
+    color: black;
+  }
+
+  a {
+    text-decoration: none;
+  }
+
+  header {
+    width: 100%;
+    /* border: 1px solid black; */
+    /* border: 1px solid white; */
+    /* color: white; */
+    background-color: rgba(255, 255, 255);
+    z-index: 10;
+  }
+
+  .header_top {
+    display: flex;
+    justify-content: end;
+  }
+
+  .logo_box {
+    display: flex;
+    align-items: center;
+    font-size: 23px;
+    text-align: left;
+  }
+
+  .logo_box a {
+    all: unset;
+    cursor: pointer;
+    display: flex;
+  }
+
+  .logo_box img {
+    margin-right: 10px;
+  }
+
+  .sub_nav {
+    display: flex;
+    margin-top: 20px;
+    margin-right: 200px;
+    justify-content: space-between;
+    font-size: 15px;
+  }
+
+  .sub_nav li,
+  .sub_nav a,
+  .main_nav li,
+  .main_nav a {
+    all: unset;
+  }
+
+  .sub_nav a,
+  .main_nav a {
+    cursor: pointer;
+  }
+
+  .sub_nav :last-child {
+    margin-left: 15px;
+  }
+
+
+  .main_nav li::after {
+    content: "";
+    width: 0%;
+    background-color: black;
+    display: block;
+    transition: 0.5s;
+    height: 2px;
+  }
+
+  .main_nav li:hover {
+    font-weight: 800;
+  }
+
+  .main_nav li:hover::after {
+    width: 100%;
+  }
+
+  .header_bottom {
+    padding-top: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-right: 170px;
+    text-align: end;
+    padding-left: 150px;
+    padding-bottom: 15px;
+    box-shadow: -1px 3px 3px 0px rgb(70, 70, 70);
+  }
+
+  .main_nav {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+
+  .main_nav li {
+    padding-right: 30px;
+    font-size: 18px;
+  }
+
+  footer {
+    background-color: rgb(233, 238, 243);
+    margin-top: 50px;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    padding-top: 30px;
+    width: 100%;
+  }
+
+  .footertop {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 15px;
+  }
+
+  .ftlogo {
+    all: unset;
+    cursor: pointer;
+    display: flex;
+    flex-direction: row;
+    padding-right: 80px;
+    align-items: center;
+  }
+
+  .fttitle {
+    font-size: 25px !important;
+  }
+
+  .footertop h1 {
+    font-size: 20px;
+    padding-bottom: 5px;
+  }
+
+  .ftlogo img {
+    width: 80px;
+    height: 80px;
+    padding-right: 15px;
+  }
+
+  .ask {
+    padding-right: 80px;
+  }
+
+  .copyright {
+    padding-bottom: 10px;
+  }
+
+  .nowpage {
+    font-weight: 800;
+  }
+
+  section {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    margin-top: 1px;
+    flex-direction: column;
+  }
+
+  .maintop {
+    height: 135px;
+    width: 100%;
+    display: flex;
+    /* justify-content: center; */
+  }
+
+  .maintop h1 {
+    padding-top: 30px;
+    width: 100%;
+    height: 80px;
+    text-align: center;
+    margin-left: -200px;
+    background-color: rgb(219, 219, 219);
+  }
+
+  .mainSubnav {
+    background-color: white;
+    margin-left: 150px;
+    border: 1px solid rgb(153, 153, 153);
+    width: 200px;
+    height: 415px;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 25px;
+  }
+
+  .mainSubnav li,
+  .mainSubnav a {
+    all: unset;
+    cursor: pointer;
+  }
+
+  .mainSubnav p {
+    width: 200px;
+    height: 90px;
+    padding-top: 45px;
+    background-color: rgb(13, 97, 194);
+    display: flex;
+    justify-content: center;
+    color: rgb(240, 240, 240);
+    font-weight: 600;
+  }
+
+  .mainSubnav li {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 200px;
+    height: 70px;
+    border-top: 1px solid rgb(153, 153, 153);
+  }
+
+  .mainSubnav li:hover {
+    background-color: rgb(61, 61, 61);
+    color: white;
+  }
+
+  .now1 {
+    background-color: rgb(61, 61, 61) !important;
+    color: white !important;
+  }
+
+  .icon_text {
+    font-size: 25px;
+  }
+
+  .mintitle {
+    padding-top: 30px;
+    padding-left: 20px;
+    color: #181818;
+    padding-bottom: 20px;
+  }
+
+  .mintitle p {
+    margin-top: 8px;
+    font-weight: 500;
+    font-size: 15px;
+  }
+
+  .main_con {
+    margin-top: 50px;
+    height: 100%;
+    padding-left: 500px;
+    display: flex;
+    flex-direction: row;
+  }
+
+  .main_con img {
+    margin-right: 45px;
+    padding: 10px;
+    border: 1.5px solid lightgrey;
+  }
+
+  .text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .text p {
+    font-size: 23px;
+  }
+
+  .text_bold {
+    font-size: 25px;
+    font-weight: 600;
+    padding-left: 4px;
+  }
+</style>
+
+<body>
+  <!-- 해더 영역 -->
+  <header>
+
+    <!-- 해더 상단 네브바 -->
+    <div class="header_top">
+      <ul class="sub_nav">
+        <li><a class="login">로그인</a></li>
+        <li><a class="register">회원가입</a></li>
+        <li><a class="stdManage">학생 관리</a></li>
+        <li class="logout">로그아웃</li>
+      </ul>
+    </div>
+
+    <!-- 해더 하단 네브바 -->
+    <div class="header_bottom">
+      <div class="logo_box">
+        <a href="./index.html"><img src="../img/logo (2).png" width="75px">
+          <div class="school">경북소프트웨어고등학교<br>
+            도서관리 사이트</div>
+        </a>
+      </div>
+      <ul class="main_nav">
+        <li><a href="./serch.html">도서검색</a></li>
+        <li><a href="./use_info.html">이용안내</a></li>
+        <li><a href="./book_day1.html">독서행사</a></li>
+        <li class="mypage"><a href="#">나의 도서관</a></li>
+      </ul>
+    </div>
+  </header>
+  <section>
+    <div class="maintop">
+      <ul class="mainSubnav">
+        <p>독서행사</p>
+        <a href="./book_day1.html">
+          <li>도서관의 문개방</li>
+        </a>
+        <a href="./book_day2.html">
+          <li>도전! 다독반</li>
+        </a>
+        <a href="./book_day3.html" class="now1">
+          <li>독서왕 도전</li>
+        </a>
+        <a href="./book_day4.html">
+          <li>늘봄 특별행사</li>
+        </a>
+      </ul>
+      <h1 class="mintitle">독서행사<p class="min">홈 > 독서행사 > 독서왕</p>
+      </h1>
+    </div>
+    <div class="main_con">
+      <img src="../img/gbsw_lib3.png" width="350px">
+      <div class="text">
+        <h1 style="font-size: 30px; margin-bottom: 20px;"><i class="fa-solid fa-check"></i>&nbsp;&nbsp;이 구역 독서왕은 나야 나!
+        </h1>
+        <p>독서 행사 명: <a style="color: #9681aa; font-weight: 600;">이 구역 독서왕은 나야 나!</a></p>
+        <p>행사 일정: 2023.04~11</p><br>
+        <p>행사 설명: </p>
+        <p><span style="color: #9681aa">4월 부터 11월</span>까지 반별로 도서 대출 기록 통계와</p>
+        <p>독서기록장 독서 기록 권 수를 통계내어, 우수한 </p>
+        <p>우수한 학생들을 나누어 <span class="text_bold">상금</span>시상</p>
+      </div>
+    </div>
+  </section>
+  <footer>
+    <div class="footertop">
+      <a class="ftlogo" href="./index.html">
+        <img src="../img/logo (2).png">
+        <h1 class="fttitle">경북소프트웨어고등학교<br>도서관리 사이트</h1>
+      </a>
+      <ul class="ask">
+        <h1>학교 정보</h1>
+        <p><strong>전화</strong> &nbsp;&nbsp;교무실 - 054-832-2903 &nbsp;&nbsp;행정실 - 054-832-2900&nbsp;&nbsp;
+          <strong>FAX.</strong> &nbsp;&nbsp;054-833-2877
+        </p>
+        <p><strong>주소</strong>&nbsp;&nbsp;우[37362] 경상북도 의성군 봉양면 봉호로 14 경북소프트웨어고등학교</p>
+        <p><strong>공식홈</strong> &nbsp;&nbsp;<a href="http://school.gyo6.net/gbsw">http://school.gyo6.net/gbsw</a></p>
+      </ul>
+
+      <ul class="useTime">
+        <h1>도서관 운영시간</h1>
+        <p>평일 12:50 ~ 13:40</p>
+      </ul>
+
+    </div>
+
+    <p class="copyright">Copyright(c) 경북소프트웨어고등학교. All rights reserved.</p>
+  </footer>
+</body>
+<script src="../js/index.js"></script>
+
+</html>

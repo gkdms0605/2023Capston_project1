@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>경북소프트웨어고등학교 도서 관리 시스템</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR&display=swap" rel="stylesheet">
+</head>
+<style>
+  * {
+    padding: 0;
+    margin: 0;
+    font-family: 'IBM Plex Sans KR', sans-serif;
+  }
+
+  header {
+    width: 100%;
+    background-color: rgba(255, 255, 255);
+    z-index: 10;
+    position: fixed;
+    top: 0;
+  }
+
+  .header_top {
+    display: flex;
+    justify-content: end;
+  }
+
+  .logo_box {
+    display: flex;
+    align-items: center;
+    font-size: 23px;
+    text-align: left;
+  }
+
+  .logo_box a {
+    all: unset;
+    cursor: pointer;
+    display: flex;
+  }
+
+  .logo_box img {
+    margin-right: 10px;
+  }
+
+  .sub_nav {
+    display: flex;
+    margin-top: 20px;
+    margin-right: 200px;
+    justify-content: space-between;
+    font-size: 15px;
+  }
+
+  .sub_nav li,
+  .sub_nav a,
+  .main_nav li,
+  .main_nav a {
+    all: unset;
+  }
+
+  .sub_nav a,
+  .main_nav a {
+    cursor: pointer;
+  }
+
+  .sub_nav :last-child {
+    margin-left: 15px;
+  }
+
+  .main_nav li::after {
+    content: "";
+    width: 0%;
+    background-color: black;
+    display: block;
+    transition: 0.5s;
+    height: 0px;
+    height: 2px;
+  }
+
+  .main_nav li:hover {
+    font-weight: 800;
+  }
+
+  .main_nav li:hover::after {
+    width: 100%;
+  }
+
+  .header_bottom {
+    padding-top: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-right: 170px;
+    text-align: end;
+    padding-left: 150px;
+    padding-bottom: 15px;
+    box-shadow: -1px 3px 3px 0px rgb(70, 70, 70);
+  }
+
+  .main_nav {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+
+  .main_nav li {
+    padding-right: 30px;
+    font-size: 18px;
+  }
+
+  .result_con {
+    justify-content: center;
+  }
+
+  .result_b {
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  table th {
+    font-size: 23px;
+    border-bottom: 2px solid gray;
+  }
+
+  table tr {
+    font-size: 20px;
+  }
+
+  footer {
+    background-color: rgb(233, 238, 243);
+    margin-top: 50px;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    padding-top: 30px;
+    width: 100%;
+  }
+
+  .footertop {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 15px;
+  }
+
+  .ftlogo {
+    all: unset;
+    cursor: pointer;
+    display: flex;
+    flex-direction: row;
+    padding-right: 80px;
+    align-items: center;
+  }
+
+  .fttitle {
+    font-size: 25px !important;
+  }
+
+  .footertop h1 {
+    font-size: 20px;
+    padding-bottom: 5px;
+  }
+
+  .ftlogo img {
+    width: 80px;
+    height: 80px;
+    padding-right: 15px;
+  }
+
+  .ask {
+    padding-right: 80px;
+  }
+
+  .copyright {
+    padding-bottom: 10px;
+  }
+</style>
+<!-- 해더 영역 -->
+<header>
+
+  <!-- 해더 상단 네브바 -->
+  <div class="header_top">
+    <ul class="sub_nav">
+      <li><a class="login">로그인</a></li>
+      <li><a class="register">회원가입</a></li>
+      <li><a class="stdManage">학생 관리</a></li>
+      <li class="logout">로그아웃</li>
+    </ul>
+  </div>
+
+  <!-- 해더 하단 네브바 -->
+  <div class="header_bottom">
+    <div class="logo_box">
+      <a href="./index.html"><img src="../img/logo (2).png" width="75px">
+        <div class="school">경북소프트웨어고등학교<br>
+          도서관리 사이트</div>
+      </a>
+    </div>
+    <ul class="main_nav">
+      <li><a href="./serch.html">도서검색</a></li>
+      <li><a href="./use_info.html">이용안내</a></li>
+      <li><a href="./book_day1.html">독서행사</a></li>
+      <li class="mypage"><a href="#">나의 도서관</a></li>
+    </ul>
+  </div>
+</header>
+<div class="result_con">
+  <h1 style="text-align: center; margin-top: 60px; margin-bottom: 40px;">도서 검색 결과</h1>
+  <table class="result_b" cellspacing="20">
+    <tr>
+      <th class="num">순번</th>
+      <th class="book_img">책 표지</th>
+      <th class="day">대여일</th>
+      <th class="title_book">책 제목</th>
+      <th class="writer">글쓴이</th>
+      <th class="home">출판사</th>
+      <th class="serial">일련번호</th>
+      <th class="location">위치</th>
+    </tr>
+    <tr>
+      <td class="num">1</td>
+      <td class="book_img"><img src="../img/book1.jpg" width="150px"></td>
+      <td class="day">2020-05-08</td>
+      <td class="title_book">지겨운 공부 왜 해야해?</td>
+      <td class="writer">정재영</td>
+      <td class="home">북라이프</td>
+      <td class="serial">80046</td>
+      <td class="location">800</td>
+    </tr>
+    <tr>
+      <td class="num">2</td>
+      <td class="book_img"><img src="../img/book2.jpg" width="150px"></td>
+      <td class="day">2020-06-17</td>
+      <td class="title_book">엄마, 수학공부 꼭 해야 돼?</td>
+      <td class="writer">한화주</td>
+      <td class="home">팜파스</td>
+      <td class="serial">80075</td>
+      <td class="location">800</td>
+    </tr>
+  </table>
+</div>
+<footer>
+  <div class="footertop">
+    <a class="ftlogo" href="./index.html">
+      <img src="../img/logo (2).png">
+      <h1 class="fttitle">경북소프트웨어고등학교<br>도서관리 사이트</h1>
+    </a>
+    <ul class="ask">
+      <h1>학교 정보</h1>
+      <p><strong>전화</strong> &nbsp;&nbsp;교무실 - 054-832-2903 &nbsp;&nbsp;행정실 - 054-832-2900&nbsp;&nbsp;
+        <strong>FAX.</strong> &nbsp;&nbsp;054-833-2877
+      </p>
+      <p><strong>주소</strong>&nbsp;&nbsp;우[37362] 경상북도 의성군 봉양면 봉호로 14 경북소프트웨어고등학교</p>
+      <p><strong>공식홈</strong> &nbsp;&nbsp;<a href="http://school.gyo6.net/gbsw">http://school.gyo6.net/gbsw</a></p>
+    </ul>
+
+    <ul class="useTime">
+      <h1>도서관 운영시간</h1>
+      <p>평일 12:50 ~ 13:40</p>
+    </ul>
+
+  </div>
+
+  <p class="copyright">Copyright(c) 경북소프트웨어고등학교. All rights reserved.</p>
+</footer>
+</body>
+<script src="../js/index.js"></script>
+
+</html>
